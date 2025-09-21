@@ -1,0 +1,9 @@
+.tests/
+.vscode/
+.idea/
+*.iml
+
+sources.txt
+
+build/
+*.class
