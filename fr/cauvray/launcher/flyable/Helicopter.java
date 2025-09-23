@@ -1,8 +1,7 @@
 package fr.cauvray.launcher.flyable;
 
-import fr.cauvray.launcher.WeatherProvider;
 import fr.cauvray.launcher.WeatherType;
-import fr.cauvray.launcher.instructions.Coordinates;
+import fr.cauvray.launcher.scenarios.Coordinates;
 
 public class Helicopter extends Aircraft {
 	public Helicopter(long id, String name, Coordinates coordinates) {
@@ -11,9 +10,7 @@ public class Helicopter extends Aircraft {
 
 	@Override
 	public void updateConditions() {
-		WeatherType weatherType = WeatherType.valueOf(WeatherProvider.getCurrentWeather(coordinates));
-
-		switch (weatherType) {
+		switch (WeatherType.valueOf(weatherTower.getWeather(coordinates))) {
 			case SUN:
 				coordinates.updateLongitude(10);
 				coordinates.updateHeight(2);
@@ -28,5 +25,7 @@ public class Helicopter extends Aircraft {
 				coordinates.updateHeight(-12);
 				break;
 		}
+
+		super.updateConditions();
 	}
 }

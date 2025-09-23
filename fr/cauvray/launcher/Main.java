@@ -1,8 +1,10 @@
 package fr.cauvray.launcher;
 
-import fr.cauvray.launcher.exceptions.InvalidScenarioInstructionException;
-import fr.cauvray.launcher.instructions.Instruction;
-import fr.cauvray.launcher.instructions.InstructionsManager;
+import fr.cauvray.launcher.exceptions.InvalidScenarioException;
+import fr.cauvray.launcher.flyable.Flyable;
+import fr.cauvray.launcher.scenarios.Scenario;
+import fr.cauvray.launcher.scenarios.ScenarioCreator;
+import fr.cauvray.launcher.tower.WeatherTower;
 
 import java.io.FileNotFoundException;
 
@@ -13,24 +15,25 @@ public class Main {
 			return;
 		}
 
-		InstructionsManager instructionsManager;
+		Scenario scenario;
 		try {
-			instructionsManager = new InstructionsManager(args[0]);
-		} catch (FileNotFoundException | InvalidScenarioInstructionException ex) {
+			scenario = ScenarioCreator.createScenario(args[0]);
+		} catch (FileNotFoundException | InvalidScenarioException ex) {
 			System.err.println("Error: " + ex.getMessage());
 			System.exit(1);
 			return;
 		}
 
-		System.out.println("Iterations: " + instructionsManager.getIterations());
-		System.out.println("Instructions:");
-		for (Instruction  instruction : instructionsManager.getInstructions()) {
-			System.out.println("Long: " + instruction.getFlyableCoords().getLongitude() +
-					", Lat: " + instruction.getFlyableCoords().getLatitude() +
-					", H: " + instruction.getFlyableCoords().getHeight() +
-					", Type: " + instruction.getFlyableType().name() +
-					", Name: " + instruction.getFlyableName()
-			);
+		WeatherTower weatherTower = new WeatherTower();
+
+		for (Flyable flyable : scenario.flyables()) {
+			flyable.registerTower(weatherTower);
+			weatherTower.register(flyable);
+		}
+
+		for (int i = 1; i < scenario.iterations(); i++) {
+			System.out.println("Iteration " + i);
+			weatherTower.changeWeather();
 		}
 	}
 }

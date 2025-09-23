@@ -1,6 +1,6 @@
 package fr.cauvray.launcher.flyable;
 
-import fr.cauvray.launcher.instructions.Coordinates;
+import fr.cauvray.launcher.scenarios.Coordinates;
 
 public enum FlyableType {
 	Baloon(Baloon::new),

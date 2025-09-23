@@ -1,7 +1,7 @@
 package fr.cauvray.launcher.tower;
 
 import fr.cauvray.launcher.WeatherProvider;
-import fr.cauvray.launcher.instructions.Coordinates;
+import fr.cauvray.launcher.scenarios.Coordinates;
 
 public class WeatherTower extends Tower {
 	public String getWeather(Coordinates coordinates) {
@@ -9,5 +9,6 @@ public class WeatherTower extends Tower {
 	}
 
 	public void changeWeather() {
+		this.conditionChanged();
 	}
 }

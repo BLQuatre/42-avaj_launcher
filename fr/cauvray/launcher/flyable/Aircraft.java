@@ -1,6 +1,6 @@
 package fr.cauvray.launcher.flyable;
 
-import fr.cauvray.launcher.instructions.Coordinates;
+import fr.cauvray.launcher.scenarios.Coordinates;
 
 public class Aircraft extends Flyable {
 	protected long id;
@@ -13,5 +13,18 @@ public class Aircraft extends Flyable {
 		this.coordinates = coordinates;
 	}
 
-	public void updateConditions() {}
+	public long getId() {
+		return id;
+	}
+	public String getName() {
+		return name;
+	}
+
+	public void updateConditions() {
+		coordinates.updateHeight(Math.clamp(coordinates.getHeight(), 0, 100));
+
+		if (coordinates.getHeight() == 0) {
+			weatherTower.unregister(this);
+		}
+	}
 }
