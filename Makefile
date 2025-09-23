@@ -16,7 +16,7 @@ run:
 clean:
 	@echo Removing ${BUILD_DIR} folder and sources.txt
 	@rm -rf build
-	@rm sources.txt
+	@rm -f sources.txt
 
 re: clean all
 
