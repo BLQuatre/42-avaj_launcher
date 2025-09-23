@@ -2,7 +2,7 @@ package fr.cauvray.launcher.flyable;
 
 import fr.cauvray.launcher.WeatherProvider;
 import fr.cauvray.launcher.WeatherType;
-import fr.cauvray.launcher.utils.Coordinates;
+import fr.cauvray.launcher.instructions.Coordinates;
 
 public class JetPlane extends Aircraft {
 	public JetPlane(long id, String name, Coordinates coordinates) {

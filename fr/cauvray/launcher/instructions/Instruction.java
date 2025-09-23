@@ -1,7 +1,6 @@
 package fr.cauvray.launcher.instructions;
 
 import fr.cauvray.launcher.flyable.FlyableType;
-import fr.cauvray.launcher.utils.Coordinates;
 
 public class Instruction {
 	private final FlyableType flyableType;

@@ -4,7 +4,7 @@ import fr.cauvray.launcher.exceptions.AicraftCreationFailedException;
 import fr.cauvray.launcher.exceptions.AircraftNotFoundException;
 import fr.cauvray.launcher.flyable.Flyable;
 import fr.cauvray.launcher.flyable.FlyableType;
-import fr.cauvray.launcher.utils.Coordinates;
+import fr.cauvray.launcher.instructions.Coordinates;
 
 public class AircraftFactory {
 	public static Flyable newAircraft(String type, String name, Coordinates coordinates) throws AircraftNotFoundException, AicraftCreationFailedException {

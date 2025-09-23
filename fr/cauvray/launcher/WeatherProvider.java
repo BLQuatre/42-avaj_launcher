@@ -1,6 +1,7 @@
 package fr.cauvray.launcher;
 
-import fr.cauvray.launcher.utils.Coordinates;
+import fr.cauvray.launcher.instructions.Coordinates;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 

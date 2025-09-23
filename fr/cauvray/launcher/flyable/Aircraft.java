@@ -1,6 +1,6 @@
 package fr.cauvray.launcher.flyable;
 
-import fr.cauvray.launcher.utils.Coordinates;
+import fr.cauvray.launcher.instructions.Coordinates;
 
 public class Aircraft extends Flyable {
 	protected long id;

@@ -1,4 +1,4 @@
-package fr.cauvray.launcher.utils;
+package fr.cauvray.launcher.instructions;
 
 public class Coordinates {
 	private int longitude;

@@ -2,7 +2,7 @@ package fr.cauvray.launcher.flyable;
 
 import fr.cauvray.launcher.WeatherProvider;
 import fr.cauvray.launcher.WeatherType;
-import fr.cauvray.launcher.utils.Coordinates;
+import fr.cauvray.launcher.instructions.Coordinates;
 
 public class Baloon extends Aircraft {
 	public Baloon(long id, String name, Coordinates coordinates) {
