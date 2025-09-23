@@ -1,11 +1,7 @@
 package fr.cauvray.launcher.instructions;
 
-import fr.cauvray.launcher.exceptions.InvalidIterationsNumberException;
-import fr.cauvray.launcher.exceptions.InvalidScenarioInstructionHeightException;
-import fr.cauvray.launcher.exceptions.InvalidScenarioInstructionSizeException;
+import fr.cauvray.launcher.exceptions.InvalidScenarioInstructionException;
 import fr.cauvray.launcher.flyable.FlyableType;
-import fr.cauvray.launcher.utils.Coordinates;
-import fr.cauvray.launcher.utils.CoordinatesUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,49 +12,53 @@ public class InstructionsManager {
 	private int iterations = -1;
 	private final ArrayList<Instruction> instructions = new ArrayList<>();
 
-	public InstructionsManager(String fileName) {
+	private int customParseInt(String str) throws InvalidScenarioInstructionException {
+		try {
+			return Integer.parseInt(str);
+		} catch (NumberFormatException e) {
+			throw new InvalidScenarioInstructionException("Expected an integer, Got '" + str + "'");
+		}
+	}
+
+	public InstructionsManager(String fileName) throws FileNotFoundException, InvalidScenarioInstructionException {
 		File file = new File(fileName);
 
-		try (Scanner fileScanner = new Scanner(file)) {
+		Scanner fileScanner = new Scanner(file);
 
-			if (fileScanner.hasNextLine()) {
-				String firstLine = fileScanner.nextLine();
-				this.iterations = Integer.parseInt(firstLine);
-				if (this.iterations < 0) {
-					throw new InvalidIterationsNumberException(firstLine);
-				}
+		if (fileScanner.hasNextLine()) {
+			String firstLine = fileScanner.nextLine();
+			this.iterations = customParseInt(firstLine);
+			if (this.iterations < 0) {
+				throw new InvalidScenarioInstructionException("Expected positive number of instructions. Got " + this.iterations);
+			}
+		}
+
+		while (fileScanner.hasNextLine()) {
+			String line = fileScanner.nextLine();
+
+			String[] splitLine = line.split(" ");
+			if (splitLine.length != 5) {
+				throw new InvalidScenarioInstructionException(
+						"Expected 5 values (Type Name Longitude Latitude Height)\n" +
+								"Got '" + line + "' (" + splitLine.length + " values)"
+				);
 			}
 
-			while (fileScanner.hasNextLine()) {
-				String line = fileScanner.nextLine();
-
-				String[] splittedLine = line.split(" ");
-				if (splittedLine.length != 5) {
-					throw new InvalidScenarioInstructionSizeException(line, splittedLine.length);
-				}
-
-				FlyableType flyableType = FlyableType.valueOf(splittedLine[0]);
-				String name = splittedLine[1];
-
-				int longitude = Integer.parseInt(splittedLine[2]);
-				int latitude = Integer.parseInt(splittedLine[3]);
-				int height = Integer.parseInt(splittedLine[4]);
-				if (height < 0 || height > 100) {
-					throw new InvalidScenarioInstructionHeightException(height);
-				}
-
-				Coordinates coordinates = CoordinatesUtils.getCoordinates(longitude, latitude, height);
-
-				this.instructions.add(new Instruction(flyableType, name, coordinates));
+			FlyableType flyableType;
+			try {
+				flyableType = FlyableType.valueOf(splitLine[0]);
+			} catch (IllegalArgumentException e) {
+				throw new InvalidScenarioInstructionException("No aircraft of type '" + splitLine[0] + "' in enum AircraftType!");
 			}
-		} catch (FileNotFoundException
-				 | InvalidScenarioInstructionSizeException
-				 | InvalidIterationsNumberException
-				 | InvalidScenarioInstructionHeightException ex) {
-			System.out.println("Error: " + ex.getMessage());
+			String name = splitLine[1];
 
-		} catch (NumberFormatException ex) {
-			System.out.println("Error: Invalid number:" + ex.getMessage());
+			int longitude =customParseInt(splitLine[2]);
+			int latitude =customParseInt(splitLine[3]);
+			int height = Integer.min(Integer.max(0, customParseInt(splitLine[4])), 100);
+
+			Coordinates coordinates = new Coordinates(longitude, latitude, height);
+
+			this.instructions.add(new Instruction(flyableType, name, coordinates));
 		}
 	}
 
