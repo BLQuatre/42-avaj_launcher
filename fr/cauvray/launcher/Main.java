@@ -32,7 +32,6 @@ public class Main {
 		}
 
 		for (int i = 1; i < scenario.iterations(); i++) {
-			System.out.println("Iteration " + i);
 			weatherTower.changeWeather();
 		}
 	}
