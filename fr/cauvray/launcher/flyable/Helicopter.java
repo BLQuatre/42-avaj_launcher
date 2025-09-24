@@ -17,15 +17,15 @@ public class Helicopter extends Aircraft {
 			case SUN:
 				coordinates.updateLongitude(10);
 				coordinates.updateHeight(2);
-				message = "Someone turn off the oven, I’m cooking up here!";
+				message = "Someone turn off the oven, I'm cooking up here!";
 				break;
 			case RAIN:
 				coordinates.updateLongitude(5);
-				message = "I swear I’m not a washing machine!";
+				message = "I swear I'm not a washing machine!";
 				break;
 			case FOG:
 				coordinates.updateLongitude(1);
-				message = "Hide and seek with buildings, let’s gooo.";
+				message = "Hide and seek with buildings, let's gooo.";
 				break;
 			case SNOW:
 				coordinates.updateHeight(-12);

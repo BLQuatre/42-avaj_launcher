@@ -21,15 +21,15 @@ public class Baloon extends Aircraft {
 				break;
 			case RAIN:
 				coordinates.updateHeight(-5);
-				message = "I should’ve brought a giant umbrella…";
+				message = "I should've brought a giant umbrella…";
 				break;
 			case FOG:
 				coordinates.updateHeight(-3);
-				message = "Guess I’m flying in Silent Hill now.";
+				message = "Guess I'm flying in Silent Hill now.";
 				break;
 			case SNOW:
 				coordinates.updateHeight(-15);
-				message = "Frosty the Snowman just waved at me… oh wait, that’s ice.";
+				message = "Frosty the Snowman just waved at me... oh wait, that's ice.";
 				break;
 		}
 

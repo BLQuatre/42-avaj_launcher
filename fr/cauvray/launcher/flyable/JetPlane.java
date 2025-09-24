@@ -17,7 +17,7 @@ public class JetPlane extends Aircraft {
 			case SUN:
 				coordinates.updateLatitude(10);
 				coordinates.updateHeight(2);
-				message = "Sun’s out, jet’s out!";
+				message = "Sun's out, jet's out!";
 				break;
 			case RAIN:
 				coordinates.updateLatitude(5);
@@ -25,7 +25,7 @@ public class JetPlane extends Aircraft {
 				break;
 			case FOG:
 				coordinates.updateLatitude(1);
-				message = "Instruments say straight ahead… hope they’re right.";
+				message = "Instruments say straight ahead... hope they're right.";
 				break;
 			case SNOW:
 				coordinates.updateHeight(-7);
