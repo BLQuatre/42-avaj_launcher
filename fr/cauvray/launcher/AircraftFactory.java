@@ -6,6 +6,8 @@ import fr.cauvray.launcher.flyable.FlyableType;
 import fr.cauvray.launcher.scenarios.Coordinates;
 
 public class AircraftFactory {
+	private static int id = 1;
+
 	public static Flyable newAircraft(String type, String name, Coordinates coordinates) throws AicraftCreationFailedException {
 		FlyableType flyableType;
 
@@ -15,7 +17,8 @@ public class AircraftFactory {
 			throw new AicraftCreationFailedException(type, name);
 		}
 
-		Flyable flyable = flyableType.create(1, name, coordinates);
+		Flyable flyable = flyableType.create(id, name, coordinates);
+		id++;
 
 		if (flyable == null) {
 			throw new AicraftCreationFailedException(type, name);
