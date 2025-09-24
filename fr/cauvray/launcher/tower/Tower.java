@@ -1,5 +1,6 @@
 package fr.cauvray.launcher.tower;
 
+import fr.cauvray.launcher.OutfileWriter;
 import fr.cauvray.launcher.flyable.Aircraft;
 import fr.cauvray.launcher.flyable.Flyable;
 
@@ -20,7 +21,7 @@ public class Tower {
 
 		observers.add(aircraft);
 
-		System.out.println("Tower says: " + aircraft.getClass().getSimpleName()
+		OutfileWriter.addLine("Tower says: " + aircraft.getClass().getSimpleName()
 				+ "#" + aircraft.getName()
 				+ "(" + aircraft.getId() + ") registered to weather tower.");
 	}
@@ -35,7 +36,7 @@ public class Tower {
 		}
 
 		observers.remove(flyable);
-		System.out.println("Tower says: " + aircraft.getClass().getSimpleName()
+		OutfileWriter.addLine("Tower says: " + aircraft.getClass().getSimpleName()
 				+ "#" + aircraft.getName()
 				+ "(" + aircraft.getId() + ") unregistered to weather tower.");
 

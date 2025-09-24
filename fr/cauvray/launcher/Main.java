@@ -7,11 +7,20 @@ import fr.cauvray.launcher.scenarios.ScenarioCreator;
 import fr.cauvray.launcher.tower.WeatherTower;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Main {
 	public static void main(String[] args) {
 		if (args.length != 1) {
 			System.err.println("Usage: java fr.cauvray.launcher.Main <scenario>");
+			return;
+		}
+
+		try {
+			OutfileWriter.createFile();
+		} catch (IOException ex) {
+			System.err.println(ex.getMessage());
+			System.exit(1);
 			return;
 		}
 
@@ -33,6 +42,13 @@ public class Main {
 
 		for (int i = 1; i < scenario.iterations(); i++) {
 			weatherTower.changeWeather();
+		}
+
+		try {
+			OutfileWriter.writeToFile();
+		} catch (IOException ex) {
+			System.err.println(ex.getMessage());
+			System.exit(1);
 		}
 	}
 }

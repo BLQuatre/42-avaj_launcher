@@ -1,5 +1,6 @@
 package fr.cauvray.launcher.flyable;
 
+import fr.cauvray.launcher.OutfileWriter;
 import fr.cauvray.launcher.WeatherType;
 import fr.cauvray.launcher.scenarios.Coordinates;
 
@@ -32,7 +33,7 @@ public class JetPlane extends Aircraft {
 				break;
 		}
 
-		System.out.println(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id + "): " + message);
+		OutfileWriter.addLine(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id + "): " + message);
 
 		super.updateConditions();
 	}
