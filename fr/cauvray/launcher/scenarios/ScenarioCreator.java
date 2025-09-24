@@ -61,6 +61,9 @@ public class ScenarioCreator {
 
 			int longitude = customParseInt(splitLine[2]);
 			int latitude = customParseInt(splitLine[3]);
+			if (longitude < 0 || latitude < 0) {
+				throw new InvalidScenarioException("Longitude and Latitude must be positive, Got: '" + longitude + "', '" + latitude + "'");
+			}
 			int height = Integer.min(Integer.max(0, customParseInt(splitLine[4])), 100);
 
 			Coordinates coordinates = new Coordinates(longitude, latitude, height);

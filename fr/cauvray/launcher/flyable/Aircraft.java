@@ -22,8 +22,6 @@ public class Aircraft extends Flyable {
 	}
 
 	public void updateConditions() {
-		coordinates.setHeight(Math.clamp(coordinates.getHeight(), 0, 100));
-
 		if (coordinates.getHeight() == 0) {
 			OutfileWriter.addLine(this.getClass().getSimpleName()
 					+ "#" + this.name
