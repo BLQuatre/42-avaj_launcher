@@ -21,7 +21,7 @@ public class Aircraft extends Flyable {
 	}
 
 	public void updateConditions() {
-		coordinates.updateHeight(Math.clamp(coordinates.getHeight(), 0, 100));
+		coordinates.setHeight(Math.clamp(coordinates.getHeight(), 0, 100));
 
 		if (coordinates.getHeight() == 0) {
 			weatherTower.unregister(this);

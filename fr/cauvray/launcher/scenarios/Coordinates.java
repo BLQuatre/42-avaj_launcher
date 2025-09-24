@@ -31,4 +31,7 @@ public class Coordinates {
 	public void updateHeight(int height) {
 		this.height += height;
 	}
+	public void setHeight(int height) {
+		this.height = height;
+	}
 }
