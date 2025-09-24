@@ -1,5 +1,6 @@
 package fr.cauvray.launcher.flyable;
 
+import fr.cauvray.launcher.OutfileWriter;
 import fr.cauvray.launcher.scenarios.Coordinates;
 
 public class Aircraft extends Flyable {
@@ -24,6 +25,9 @@ public class Aircraft extends Flyable {
 		coordinates.setHeight(Math.clamp(coordinates.getHeight(), 0, 100));
 
 		if (coordinates.getHeight() == 0) {
+			OutfileWriter.addLine(this.getClass().getSimpleName()
+					+ "#" + this.name
+					+ "(" + this.id + ") landing.");
 			weatherTower.unregister(this);
 		}
 	}
