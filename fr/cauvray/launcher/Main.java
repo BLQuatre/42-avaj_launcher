@@ -31,7 +31,7 @@ public class Main {
 				weatherTower.register(flyable);
 			}
 
-			for (int i = 1; i < scenario.iterations(); i++) {
+			for (int i = 1; i <= scenario.iterations(); i++) {
 				weatherTower.changeWeather();
 			}
 
