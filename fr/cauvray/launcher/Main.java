@@ -16,6 +16,10 @@ public class Main {
 		}
 
 		try {
+			if (args[0].endsWith("simulation.txt")) {
+				throw new InvalidScenarioException("Scenario file cannot have same name as output file (simulation.txt)");
+			}
+
 			OutfileWriter.createFile();
 
 			Scenario scenario = ScenarioCreator.createScenario(args[0]);
